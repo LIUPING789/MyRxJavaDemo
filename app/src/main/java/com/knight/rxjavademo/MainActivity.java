@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -27,29 +31,26 @@ import static io.reactivex.Observable.create;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    @BindView(R.id.text)
+    TextView text;
+    @BindView(R.id.flatMap)
+    Button flatMap;
+    @BindView(R.id.concatMap)
+    Button concatMap;
+    @BindView(R.id.zip)
+    Button zip;
+    @BindView(R.id.filte)
+    Button filte;
+    @BindView(R.id.sample)
+    Button sample;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
-        TextView viewById = (TextView) findViewById(R.id.text);
-        viewById.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        ButterKnife.bind(this);
     }
 
-    private void initView() {
-//        flagMap();
-//        concatMap();
-//        zip();
-        ziptwo();
-//        filte();
-//        sample();
-    }
 
     /**
      * RxJava sample 操作符
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * RxJava flatMap 操作符
      */
-    public void flagMap() {
+    public void flatMap() {
         //创建一个Obsrvable (上游 可观察者)
         create(new ObservableOnSubscribe<Integer>() {
             @Override
@@ -262,15 +263,38 @@ public class MainActivity extends AppCompatActivity {
         })
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                Log.d(TAG, s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                Log.w(TAG, throwable);
-            }
-        });
+                    @Override
+                    public void accept(String s) throws Exception {
+                        Log.d(TAG, s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.w(TAG, throwable);
+                    }
+                });
+    }
+
+    @OnClick({R.id.text, R.id.flatMap, R.id.concatMap, R.id.zip, R.id.filte, R.id.sample})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.text:
+                break;
+            case R.id.flatMap:
+                flatMap();
+                break;
+            case R.id.concatMap:
+                concatMap();
+                break;
+            case R.id.zip:
+                zip();
+                break;
+            case R.id.filte:
+                filte();
+                break;
+            case R.id.sample:
+                sample();
+                break;
+        }
     }
 }

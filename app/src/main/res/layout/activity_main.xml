@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.knight.rxjavademo.MainActivity">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Hello World!" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/flatMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="flatMap" />
+
+    <Button
+        android:id="@+id/concatMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="concatMap" />
+
+    <Button
+        android:id="@+id/zip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="zip" />
+
+    <Button
+        android:id="@+id/filte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="filte" />
+
+    <Button
+        android:id="@+id/sample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sample" />
+
+
+</android.support.v7.widget.LinearLayoutCompat>
